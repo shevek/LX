@@ -17,7 +17,7 @@ import heronarts.lx.LX;
 import processing.core.PConstants;
 
 public class BurnTransition extends BlendTransition {
-	public BurnTransition(LX lx) {
-		super(lx, PConstants.BURN);
-	}
+  public BurnTransition(LX lx) {
+    super(lx, PConstants.BURN);
+  }
 }

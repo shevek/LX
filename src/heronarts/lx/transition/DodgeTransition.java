@@ -17,7 +17,7 @@ import heronarts.lx.LX;
 import processing.core.PConstants;
 
 public class DodgeTransition extends BlendTransition {
-	public DodgeTransition(LX lx) {
-		super(lx, PConstants.DODGE);
-	}
+  public DodgeTransition(LX lx) {
+    super(lx, PConstants.DODGE);
+  }
 }

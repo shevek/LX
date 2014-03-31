@@ -17,7 +17,7 @@ import heronarts.lx.LX;
 import processing.core.PConstants;
 
 public class ScreenTransition extends BlendTransition {
-	public ScreenTransition(LX lx) {
-		super(lx, PConstants.SCREEN);
-	}
+  public ScreenTransition(LX lx) {
+    super(lx, PConstants.SCREEN);
+  }
 }

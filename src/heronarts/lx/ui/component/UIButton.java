@@ -25,139 +25,139 @@ import processing.core.PGraphics;
 
 public class UIButton extends UIObject implements UIFocus {
 
-	protected boolean active = false;
-	protected boolean isMomentary = false;
-	
-	protected int inactiveColor = 0xff222222;
-	protected int activeColor = 0xff669966;	
-	protected int labelColor = 0xff999999;
-	
-	protected String label = "";
-	
-	private BooleanParameter parameter = null;
+  protected boolean active = false;
+  protected boolean isMomentary = false;
 
-	private final LXParameterListener parameterListener = new LXParameterListener() {
-		public void onParameterChanged(LXParameter p) {
-			setActive(parameter.isOn());
-		}
-	};
-	
-	public UIButton() {
-		this(0, 0, 0, 0);
-	}
-	
-	public UIButton(float x, float y, float w, float h) {
-		super(x, y, w, h);
-		setBorderColor(0xff666666);
-		setBackgroundColor(this.inactiveColor);
-	}
-	
-	public UIButton setParameter(BooleanParameter parameter) {
-		if (this.parameter != null) {
-			this.parameter.removeListener(this.parameterListener);
-		}
-		this.parameter = parameter;
-		if (parameter != null) {
-			parameter.addListener(this.parameterListener);
-			setActive(parameter.isOn());
-		}
-		return this;
-	}
+  protected int inactiveColor = 0xff222222;
+  protected int activeColor = 0xff669966;
+  protected int labelColor = 0xff999999;
 
-	public UIButton setMomentary(boolean momentary) {
-		this.isMomentary = momentary;
-		return this;
-	}
+  protected String label = "";
 
-	protected void onDraw(UI ui, PGraphics pg) {
-		if ((this.label != null) && (this.label.length() > 0)) {
-			pg.fill(this.active ? 0xffffffff : this.labelColor);
-			pg.textFont(ui.getItemFont());
-			pg.textAlign(PConstants.CENTER);
-			pg.text(label, this.width / 2, this.height - 5);
-		}
-	}
+  private BooleanParameter parameter = null;
 
-	protected void onMousePressed(float mx, float my) {
-		setActive(this.isMomentary ? true : !this.active);
-	}
+  private final LXParameterListener parameterListener = new LXParameterListener() {
+    public void onParameterChanged(LXParameter p) {
+      setActive(parameter.isOn());
+    }
+  };
 
-	protected void onMouseReleased(float mx, float my) {
-		if (this.isMomentary) {
-			setActive(false);
-		}
-	}
-	
-	public void onKeyPressed(LXKeyEvent keyEvent, char keyChar, int keyCode) {
-		if ((keyChar == ' ') || (keyCode == java.awt.event.KeyEvent.VK_ENTER)) {
-			setActive(this.isMomentary ? true : !this.active);
-		}
-	}
+  public UIButton() {
+    this(0, 0, 0, 0);
+  }
 
-	public void onKeyReleased(LXKeyEvent keyEvent, char keyChar, int keyCode) {
-		if ((keyChar == ' ') || (keyCode == java.awt.event.KeyEvent.VK_ENTER)) {
-			if (this.isMomentary) {
-				setActive(false);
-			}
-		}
-	}
+  public UIButton(float x, float y, float w, float h) {
+    super(x, y, w, h);
+    setBorderColor(0xff666666);
+    setBackgroundColor(this.inactiveColor);
+  }
 
-	public boolean isActive() {
-		return this.active;
-	}
+  public UIButton setParameter(BooleanParameter parameter) {
+    if (this.parameter != null) {
+      this.parameter.removeListener(this.parameterListener);
+    }
+    this.parameter = parameter;
+    if (parameter != null) {
+      parameter.addListener(this.parameterListener);
+      setActive(parameter.isOn());
+    }
+    return this;
+  }
 
-	public UIButton setActive(boolean active) {
-		if (this.active != active) {
-			if (this.parameter != null) {
-				this.parameter.setValue(active);
-			}
-			setBackgroundColor(active ? this.activeColor : this.inactiveColor);
-			onToggle(this.active = active);
-			redraw();
-		}
-		return this;
-	}
+  public UIButton setMomentary(boolean momentary) {
+    this.isMomentary = momentary;
+    return this;
+  }
 
-	public UIButton toggle() {
-		return setActive(!this.active);
-	}
+  protected void onDraw(UI ui, PGraphics pg) {
+    if ((this.label != null) && (this.label.length() > 0)) {
+      pg.fill(this.active ? 0xffffffff : this.labelColor);
+      pg.textFont(ui.getItemFont());
+      pg.textAlign(PConstants.CENTER);
+      pg.text(label, this.width / 2, this.height - 5);
+    }
+  }
 
-	protected void onToggle(boolean active) {
-	}
+  protected void onMousePressed(float mx, float my) {
+    setActive(this.isMomentary ? true : !this.active);
+  }
 
-	public UIButton setActiveColor(int activeColor) {
-		if (this.activeColor != activeColor) {
-			this.activeColor = activeColor;
-			if (this.active) {
-				setBackgroundColor(activeColor);
-			}
-		}
-		return this;
-	}
+  protected void onMouseReleased(float mx, float my) {
+    if (this.isMomentary) {
+      setActive(false);
+    }
+  }
 
-	public UIButton setInactiveColor(int inactiveColor) {
-		if (this.inactiveColor != inactiveColor) {
-			this.inactiveColor = inactiveColor;
-			if (!this.active) {
-				setBackgroundColor(inactiveColor);
-			}
-		}
-		return this;
-	}
+  public void onKeyPressed(LXKeyEvent keyEvent, char keyChar, int keyCode) {
+    if ((keyChar == ' ') || (keyCode == java.awt.event.KeyEvent.VK_ENTER)) {
+      setActive(this.isMomentary ? true : !this.active);
+    }
+  }
 
-	public UIButton setLabelColor(int labelColor) {
-		if (this.labelColor != labelColor) {
-			this.labelColor = labelColor;
-			redraw();
-		}
-		return this;
-	}
+  public void onKeyReleased(LXKeyEvent keyEvent, char keyChar, int keyCode) {
+    if ((keyChar == ' ') || (keyCode == java.awt.event.KeyEvent.VK_ENTER)) {
+      if (this.isMomentary) {
+        setActive(false);
+      }
+    }
+  }
 
-	public UIButton setLabel(String label) {
-		if (!this.label.equals(label)) {
-			this.label = label;
-			redraw();
-		}
-		return this;
-	}
+  public boolean isActive() {
+    return this.active;
+  }
+
+  public UIButton setActive(boolean active) {
+    if (this.active != active) {
+      if (this.parameter != null) {
+        this.parameter.setValue(active);
+      }
+      setBackgroundColor(active ? this.activeColor : this.inactiveColor);
+      onToggle(this.active = active);
+      redraw();
+    }
+    return this;
+  }
+
+  public UIButton toggle() {
+    return setActive(!this.active);
+  }
+
+  protected void onToggle(boolean active) {
+  }
+
+  public UIButton setActiveColor(int activeColor) {
+    if (this.activeColor != activeColor) {
+      this.activeColor = activeColor;
+      if (this.active) {
+        setBackgroundColor(activeColor);
+      }
+    }
+    return this;
+  }
+
+  public UIButton setInactiveColor(int inactiveColor) {
+    if (this.inactiveColor != inactiveColor) {
+      this.inactiveColor = inactiveColor;
+      if (!this.active) {
+        setBackgroundColor(inactiveColor);
+      }
+    }
+    return this;
+  }
+
+  public UIButton setLabelColor(int labelColor) {
+    if (this.labelColor != labelColor) {
+      this.labelColor = labelColor;
+      redraw();
+    }
+    return this;
+  }
+
+  public UIButton setLabel(String label) {
+    if (!this.label.equals(label)) {
+      this.label = label;
+      redraw();
+    }
+    return this;
+  }
 }

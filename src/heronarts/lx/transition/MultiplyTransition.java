@@ -17,7 +17,7 @@ import heronarts.lx.LX;
 import processing.core.PConstants;
 
 public class MultiplyTransition extends BlendTransition {
-	public MultiplyTransition(LX lx) {
-		super(lx, PConstants.MULTIPLY);
-	}
+  public MultiplyTransition(LX lx) {
+    super(lx, PConstants.MULTIPLY);
+  }
 }

@@ -17,7 +17,7 @@ import heronarts.lx.LX;
 import processing.core.PConstants;
 
 public class OverlayTransition extends BlendTransition {
-	public OverlayTransition(LX lx) {
-		super(lx, PConstants.OVERLAY);
-	}
+  public OverlayTransition(LX lx) {
+    super(lx, PConstants.OVERLAY);
+  }
 }

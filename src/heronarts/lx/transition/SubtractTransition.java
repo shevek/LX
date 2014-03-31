@@ -17,7 +17,7 @@ import heronarts.lx.LX;
 import processing.core.PConstants;
 
 public class SubtractTransition extends BlendTransition {
-	public SubtractTransition(LX lx) {
-		super(lx, PConstants.SUBTRACT);
-	}
+  public SubtractTransition(LX lx) {
+    super(lx, PConstants.SUBTRACT);
+  }
 }

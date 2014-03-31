@@ -16,5 +16,5 @@ package heronarts.lx.model;
 import java.util.List;
 
 public interface LXFixture {
-	public List<LXPoint> getPoints();
+  public List<LXPoint> getPoints();
 }

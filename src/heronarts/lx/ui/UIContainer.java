@@ -21,32 +21,33 @@ package heronarts.lx.ui;
  */
 public class UIContainer extends UIObject {
 
-	/**
-	 * Constructs an empty UIContainer with no size.
-	 */
-	public UIContainer() {}
+  /**
+   * Constructs an empty UIContainer with no size.
+   */
+  public UIContainer() {
+  }
 
-	/**
-	 * Constructs an empty container with a size.
-	 * 
-	 * @param x x-position
-	 * @param y y-position
-	 * @param w width
-	 * @param h height
-	 */
-	public UIContainer(float x, float y, float w, float h) {
-		super(x, y, w, h);
-	}
+  /**
+   * Constructs an empty container with a size.
+   * 
+   * @param x x-position
+   * @param y y-position
+   * @param w width
+   * @param h height
+   */
+  public UIContainer(float x, float y, float w, float h) {
+    super(x, y, w, h);
+  }
 
-	/**
-	 * Constructs a container with a set of children.
-	 *  
-	 * @param children Child objects
-	 */
-	public UIContainer(UIObject[] children) {
-		for (UIObject child : children) {
-			child.addToContainer(this);
-		}
-	}
+  /**
+   * Constructs a container with a set of children.
+   * 
+   * @param children Child objects
+   */
+  public UIContainer(UIObject[] children) {
+    for (UIObject child : children) {
+      child.addToContainer(this);
+    }
+  }
 
 }

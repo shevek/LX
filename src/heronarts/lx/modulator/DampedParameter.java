@@ -17,40 +17,41 @@ import heronarts.lx.parameter.FixedParameter;
 import heronarts.lx.parameter.LXParameter;
 
 public class DampedParameter extends LXModulator {
-	
-	private final LXParameter parameter;
-	
-	private LXParameter velocity;
-	
-	public DampedParameter(LXParameter parameter, double velocity) {
-		this(parameter, new FixedParameter(velocity));
-	}
-	
-	public DampedParameter(LXParameter parameter, LXParameter velocity) {
-		this("DAMPED-" + parameter.getLabel(), parameter, velocity);
-	}
-	
-	public DampedParameter(String label, LXParameter parameter, LXParameter velocity) {
-		super(label);
-		this.parameter = parameter;
-		this.velocity = velocity;
-		updateValue(parameter.getValue());
-	}
-	
-	protected double computeValue(double deltaMs) {
-		double value = getValue();
-		double target = this.parameter.getValue();
-		if (value == target) {
-			return value;
-		}
-		double range = this.velocity.getValue() * deltaMs / 1000.;
-		double after;
-		if (target > value) {
-			after = Math.min(value + range, target);
-		} else {
-			after = Math.max(value - range, target);
-		}
-		return after;
-	}
+
+  private final LXParameter parameter;
+
+  private LXParameter velocity;
+
+  public DampedParameter(LXParameter parameter, double velocity) {
+    this(parameter, new FixedParameter(velocity));
+  }
+
+  public DampedParameter(LXParameter parameter, LXParameter velocity) {
+    this("DAMPED-" + parameter.getLabel(), parameter, velocity);
+  }
+
+  public DampedParameter(String label, LXParameter parameter,
+      LXParameter velocity) {
+    super(label);
+    this.parameter = parameter;
+    this.velocity = velocity;
+    updateValue(parameter.getValue());
+  }
+
+  protected double computeValue(double deltaMs) {
+    double value = getValue();
+    double target = this.parameter.getValue();
+    if (value == target) {
+      return value;
+    }
+    double range = this.velocity.getValue() * deltaMs / 1000.;
+    double after;
+    if (target > value) {
+      after = Math.min(value + range, target);
+    } else {
+      after = Math.max(value - range, target);
+    }
+    return after;
+  }
 
 }

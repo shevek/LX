@@ -17,11 +17,11 @@ package heronarts.lx.parameter;
  * A listener interface to be notified of changes to the parameter value.
  */
 public interface LXParameterListener {
-	
-	/**
-	 * Invoked when the value of a parameter is changed.
-	 * 
-	 * @param parameter The parameter that has changed its value
-	 */
-	public void onParameterChanged(LXParameter parameter);
+
+  /**
+   * Invoked when the value of a parameter is changed.
+   * 
+   * @param parameter The parameter that has changed its value
+   */
+  public void onParameterChanged(LXParameter parameter);
 }
