@@ -1,0 +1,34 @@
+buildscript {
+	apply from: file('gradle/buildscript.gradle'), to: buildscript
+}
+
+apply plugin: 'org.anarres.stdproject'
+stdproject {
+}
+
+group = "org.anarres.mirrors.heronarts"
+
+apply plugin: 'org.anarres.stdmodule'
+stdmodule {
+	description "Animation library for LED lighting systems."
+	author id: 'mark', name: 'Mark L. Slee', email: 'mark@heronarts.com'
+	author id: 'shevek', name: 'Shevek', email: 'github@anarres.org'
+	license 'Apache-2.0'
+}
+
+repositories {
+	mavenLocal()
+}
+
+dependencies {
+	compile 'com.google.code.gson:gson:2.6.2'
+	compile 'org.anarres.mirrors.heronarts:minim:1.0.0-SNAPSHOT'
+}
+
+sourceCompatibility = 1.7
+animalsniffer {
+	signature = "org.codehaus.mojo.signature:java17:+@signature"
+	skip = true
+}
+
+sourceSets.main.java.srcDirs = [ 'src' ];
